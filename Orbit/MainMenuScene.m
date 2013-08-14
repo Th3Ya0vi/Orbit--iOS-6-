@@ -5,20 +5,19 @@
 //  Created by Hamdan Developer on 8/13/13.
 //  Copyright (c) 2013 Hamdan Javeed. All rights reserved.
 //
-//  The screen that the user initially sees. Right now it has a MenuOptionsLayer and displays
-//  an icon.
+//  The screen that the user initially sees. Has a Menu object that has a Play button.
 
 #import "MainMenuScene.h"
-#import "MenuOptionsLayer.h"
+#import "Menu.h"
 
 @implementation MainMenuScene
 
-// create the menuOptionsLayer and add it as a child
+// create the menu and add it as a child
 - (id)init {
     self = [super init];
     if (self) {
-        MenuOptionsLayer *menuOptionsLayer = [MenuOptionsLayer node];
-        [self addChild:menuOptionsLayer];
+        Menu *menu = [[Menu alloc] init];
+        [self addChild:menu];
     }
     return self;
 }
