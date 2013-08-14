@@ -13,3 +13,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #endif
+
+// get the window size
+#define WINDOW_SIZE [[CCDirector sharedDirector] winSize]
+// get the center point
+#define CENTER_POINT CGPointMake(WINDOW_SIZE.width / 2.0f, WINDOW_SIZE.height / 2.0f)

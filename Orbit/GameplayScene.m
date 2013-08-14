@@ -17,10 +17,7 @@
     self = [super init];
     if (self) {
         CCSprite *tempIconSprite = [CCSprite spriteWithFile:@"Icon.png"];
-        
-        CGSize windowSize = [[CCDirector sharedDirector] winSize];
-        tempIconSprite.position = CGPointMake(windowSize.width / 2.0f, windowSize.height / 2.0f);
-        
+        tempIconSprite.position = CENTER_POINT;
         [self addChild:tempIconSprite];
     }
     return self;
