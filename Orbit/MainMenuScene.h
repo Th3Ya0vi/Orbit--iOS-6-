@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Hamdan Javeed. All rights reserved.
 //
 //  The screen that the user initially sees. Has a Menu object that has a Play button.
+//  The play button transitions to the game.
 
 #import "CCScene.h"
 

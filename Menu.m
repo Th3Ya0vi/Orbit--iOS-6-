@@ -5,9 +5,10 @@
 //  Created by Hamdan Developer on 8/13/13.
 //  Copyright (c) 2013 Hamdan Javeed. All rights reserved.
 //
-//  A menu that has a play button.
+//  A menu that has a play button which transitions to the game.
 
 #import "Menu.h"
+#import "GameplayScene.h"
 
 @implementation Menu
 
@@ -24,9 +25,9 @@
     return self;
 }
 
-// logs to console when called
+// transitions to the GameplayScene
 - (void)playGame {
-    NSLog(@"Game is playing");
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameplayScene node]]];
 }
 
 @end
