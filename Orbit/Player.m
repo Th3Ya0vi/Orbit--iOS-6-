@@ -12,7 +12,7 @@
 // the player's sprite (contains the sprite image, position, rotation)
 @property (nonatomic) CCSprite *sprite;
 
-// the player's angle relative to the orb, think of the player on a cartesian grid, right would be 0° increasing counter-clockwise
+// the player's angle relative to the orb, think of the player on a cartesian grid, right would be 0π radians increasing counter-clockwise
 @property (nonatomic) float angleRelativeToOrb;
 
 // the radius of the player's orbit
@@ -44,7 +44,11 @@
     // get the new position by cos/sin -ing and then multiplying by the orbitalDistance, then adding the center point
     float newPositionX = cosf(self.angleRelativeToOrb) * self.orbitalDistance + CENTER_POINT.x;
     float newPositionY = sinf(self.angleRelativeToOrb) * self.orbitalDistance + CENTER_POINT.y;
+    // set the sprites position
     self.sprite.position = CGPointMake(newPositionX, newPositionY);
+    
+    // set the sprite's rotation by converting the angleRelativeToOrb to degrees
+    self.sprite.rotation = -self.angleRelativeToOrb * (180.0f / M_PI);
 }
 
 @end
