@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  Orbit
 //
-//  Created by Hamdan Developer on 8/13/13.
+//  Created by Hamdan Javeed on 8/13/13.
 //  Copyright Hamdan Javeed 2013. All rights reserved.
 //
 

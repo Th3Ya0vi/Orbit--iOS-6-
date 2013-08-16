@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC158D9017BDC89A0059685A /* GameplayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AC158D8F17BDC89A0059685A /* GameplayLayer.m */; };
+		AC158D9B17BDCC5A0059685A /* Orb.m in Sources */ = {isa = PBXBuildFile; fileRef = AC158D9A17BDCC5A0059685A /* Orb.m */; };
+		AC158D9E17BDCCD50059685A /* Orb.png in Resources */ = {isa = PBXBuildFile; fileRef = AC158D9C17BDCCD50059685A /* Orb.png */; };
+		AC158D9F17BDCCD50059685A /* Orb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC158D9D17BDCCD50059685A /* Orb@2x.png */; };
+		AC158DA217BDCE400059685A /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = AC158DA017BDCE400059685A /* Player.png */; };
+		AC158DA317BDCE400059685A /* Player@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC158DA117BDCE400059685A /* Player@2x.png */; };
+		AC4D926017BDC200000EAE21 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4D925F17BDC200000EAE21 /* Player.m */; };
 		D783A1DC17BAB053007F3295 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783A1DB17BAB053007F3295 /* QuartzCore.framework */; };
 		D783A1DE17BAB053007F3295 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783A1DD17BAB053007F3295 /* OpenGLES.framework */; };
 		D783A1E017BAB053007F3295 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783A1DF17BAB053007F3295 /* OpenAL.framework */; };
@@ -142,10 +149,19 @@
 		D7A6CDB317BACB6900F093D7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D7A6CDA917BACB6900F093D7 /* Icon@2x.png */; };
 		D7AE0D2817BB078F006D15DE /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D7AE0D2717BB078F006D15DE /* MainMenuScene.m */; };
 		D7AE0D2E17BB0C36006D15DE /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = D7AE0D2D17BB0C36006D15DE /* Menu.m */; };
-		D7AE0D3117BB1084006D15DE /* GameplayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D7AE0D3017BB1084006D15DE /* GameplayScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC158D8E17BDC89A0059685A /* GameplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayLayer.h; sourceTree = "<group>"; };
+		AC158D8F17BDC89A0059685A /* GameplayLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayLayer.m; sourceTree = "<group>"; };
+		AC158D9917BDCC5A0059685A /* Orb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Orb.h; sourceTree = "<group>"; };
+		AC158D9A17BDCC5A0059685A /* Orb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Orb.m; sourceTree = "<group>"; };
+		AC158D9C17BDCCD50059685A /* Orb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orb.png; sourceTree = "<group>"; };
+		AC158D9D17BDCCD50059685A /* Orb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orb@2x.png"; sourceTree = "<group>"; };
+		AC158DA017BDCE400059685A /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
+		AC158DA117BDCE400059685A /* Player@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player@2x.png"; sourceTree = "<group>"; };
+		AC4D925E17BDC200000EAE21 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		AC4D925F17BDC200000EAE21 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		D783A1D817BAB053007F3295 /* Orbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D783A1DB17BAB053007F3295 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D783A1DD17BAB053007F3295 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -429,8 +445,6 @@
 		D7AE0D2717BB078F006D15DE /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		D7AE0D2C17BB0C36006D15DE /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Menu.h; path = ../Menu.h; sourceTree = "<group>"; };
 		D7AE0D2D17BB0C36006D15DE /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Menu.m; path = ../Menu.m; sourceTree = "<group>"; };
-		D7AE0D2F17BB1084006D15DE /* GameplayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayScene.h; sourceTree = "<group>"; };
-		D7AE0D3017BB1084006D15DE /* GameplayScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +468,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC158D8D17BDC8310059685A /* Game Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AC158DA017BDCE400059685A /* Player.png */,
+				AC158DA117BDCE400059685A /* Player@2x.png */,
+				AC158D9C17BDCCD50059685A /* Orb.png */,
+				AC158D9D17BDCCD50059685A /* Orb@2x.png */,
+			);
+			name = "Game Resources";
+			sourceTree = "<group>";
+		};
 		D783A1CF17BAB053007F3295 = {
 			isa = PBXGroup;
 			children = (
@@ -499,8 +524,13 @@
 				D7AE0D2717BB078F006D15DE /* MainMenuScene.m */,
 				D7AE0D2C17BB0C36006D15DE /* Menu.h */,
 				D7AE0D2D17BB0C36006D15DE /* Menu.m */,
-				D7AE0D2F17BB1084006D15DE /* GameplayScene.h */,
-				D7AE0D3017BB1084006D15DE /* GameplayScene.m */,
+				AC158D8E17BDC89A0059685A /* GameplayLayer.h */,
+				AC158D8F17BDC89A0059685A /* GameplayLayer.m */,
+				AC4D925E17BDC200000EAE21 /* Player.h */,
+				AC4D925F17BDC200000EAE21 /* Player.m */,
+				AC158D9917BDCC5A0059685A /* Orb.h */,
+				AC158D9A17BDCC5A0059685A /* Orb.m */,
+				AC158D8D17BDC8310059685A /* Game Resources */,
 				D783A1F017BAB053007F3295 /* Resources */,
 				D783A20817BAB053007F3295 /* libs */,
 				D783A37C17BAB056007F3295 /* Supporting Files */,
@@ -953,6 +983,10 @@
 				D7A6CDB117BACB6900F093D7 /* Icon-Small@2x.png in Resources */,
 				D7A6CDB217BACB6900F093D7 /* Icon.png in Resources */,
 				D7A6CDB317BACB6900F093D7 /* Icon@2x.png in Resources */,
+				AC158D9E17BDCCD50059685A /* Orb.png in Resources */,
+				AC158D9F17BDCCD50059685A /* Orb@2x.png in Resources */,
+				AC158DA217BDCE400059685A /* Player.png in Resources */,
+				AC158DA317BDCE400059685A /* Player@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1092,7 +1126,9 @@
 				D783A38817BAB056007F3295 /* IntroLayer.m in Sources */,
 				D7AE0D2817BB078F006D15DE /* MainMenuScene.m in Sources */,
 				D7AE0D2E17BB0C36006D15DE /* Menu.m in Sources */,
-				D7AE0D3117BB1084006D15DE /* GameplayScene.m in Sources */,
+				AC4D926017BDC200000EAE21 /* Player.m in Sources */,
+				AC158D9017BDC89A0059685A /* GameplayLayer.m in Sources */,
+				AC158D9B17BDCC5A0059685A /* Orb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

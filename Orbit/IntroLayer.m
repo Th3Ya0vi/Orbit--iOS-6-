@@ -2,14 +2,15 @@
 //  IntroLayer.m
 //  Orbit
 //
-//  Created by Hamdan Developer on 8/13/13.
+//  Created by Hamdan Javeed on 8/13/13.
 //  Copyright Hamdan Javeed 2013. All rights reserved.
 //
 
 
 // Import the interfaces
 #import "IntroLayer.h"
-#import "MainMenuScene.h"
+//#import "MainMenuScene.h"
+#import "GameplayLayer.h"
 
 #pragma mark - IntroLayer
 
@@ -60,6 +61,6 @@
 -(void) onEnter
 {
 	[super onEnter];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[MainMenuScene node]]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameplayLayer scene]]];
 }
 @end
