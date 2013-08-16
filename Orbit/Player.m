@@ -17,6 +17,9 @@
 
 // the radius of the player's orbit
 @property (nonatomic) float orbitalDistance;
+
+// the radians per frame that the player travels
+@property (nonatomic) float radiansPerFrame;
 @end
 
 @implementation Player
@@ -29,16 +32,22 @@
         self.sprite = [CCSprite spriteWithFile:@"Player.png"];
         self.sprite.position = CGPointMake(CENTER_POINT.x + 50, CENTER_POINT.y);
         
+        // the initial angle
         self.angleRelativeToOrb = 0.0f;
+        
+        // how far away the player is from the orb
         self.orbitalDistance = 50.0f;
+        
+        // how many degrees the player travels per update
+        self.radiansPerFrame = 0.05f;
     }
     return self;
 }
 
 // updates the player's position and rotation
 - (void)update:(ccTime)delta {
-    // increase the angle by 0.1
-    self.angleRelativeToOrb += 0.1;
+    // increase the angle by radiansPerFrame
+    self.angleRelativeToOrb += self.radiansPerFrame;
     
     // now that the angle has changed, we need to reset the position and rotation of the sprite
     // get the new position by cos/sin -ing and then multiplying by the orbitalDistance, then adding the center point
