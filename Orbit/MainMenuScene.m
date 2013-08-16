@@ -2,7 +2,7 @@
 //  MainMenuScene.m
 //  Orbit
 //
-//  Created by Hamdan Developer on 8/13/13.
+//  Created by Hamdan Javeed on 8/13/13.
 //  Copyright (c) 2013 Hamdan Javeed. All rights reserved.
 //
 //  The screen that the user initially sees. Has a Menu object that has a Play button.
