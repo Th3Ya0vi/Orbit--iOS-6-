@@ -41,6 +41,9 @@
         [self addChild:[self.orb sprite] z:0]; // the orb has a z of 0
         [self addChild:[self.player sprite] z:1]; // the player has a z of 1
         
+        // set touch enabled so we can switch orbits
+        [self setTouchEnabled:YES];
+        
         // calls update: every frame
         [self scheduleUpdate];
     }
@@ -49,6 +52,24 @@
 
 - (void)update:(ccTime)delta {
     [self.player update:delta];
+}
+
+// the player touched the screen
+- (void)ccTouchesBegan:(NSSet *)touches
+             withEvent:(UIEvent *)event {
+    
+    // only get one of the touches
+    UITouch *touch = [touches anyObject];
+    // get the touch's location in node space
+    CGPoint touchLocation = [self convertToNodeSpace:[touch locationInView:[touch view]]];
+    
+    // check to see if we need to move up or down an orbit
+    if (touchLocation.x >= CENTER_POINT.x) {
+        // move up an orbit
+        self.player.currentYDirection = 1;
+    } else {
+        // move down an orbit
+    }
 }
 
 #pragma mark - Z Order

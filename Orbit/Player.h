@@ -14,4 +14,11 @@
 
 // updates the player's position and rotation
 - (void)update:(ccTime)delta;
+
+// the direction the player is currently moving in in the y direction
+// -1: down
+//  0: stationary
+//  1: up
+@property (nonatomic) int currentYDirection;
+
 @end

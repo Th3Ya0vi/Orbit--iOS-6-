@@ -18,8 +18,8 @@
 // the radius of the player's orbit
 @property (nonatomic) float orbitalDistance;
 
-// the radians per frame that the player travels
-@property (nonatomic) float radiansPerFrame;
+// the radians per second that the player travels
+@property (nonatomic) float radiansPerSecond;
 @end
 
 @implementation Player
@@ -38,16 +38,25 @@
         // how far away the player is from the orb
         self.orbitalDistance = 50.0f;
         
-        // how many degrees the player travels per update
-        self.radiansPerFrame = 0.05f;
+        // how many degrees the player travels per second
+        self.radiansPerSecond = 2.0f;
     }
     return self;
 }
 
 // updates the player's position and rotation
 - (void)update:(ccTime)delta {
-    // increase the angle by radiansPerFrame
-    self.angleRelativeToOrb += self.radiansPerFrame;
+    // increase the angle by radiansPerSecond * delta
+    self.angleRelativeToOrb += self.radiansPerSecond * delta;
+    
+    // set the orbitalDistance accordingly
+    if (self.currentYDirection == 1 && self.orbitalDistance < 100.0f) {
+        self.orbitalDistance += 250.0f * delta;
+    }
+    if (self.currentYDirection == 1 && self.orbitalDistance >= 100.0f) {
+        self.orbitalDistance = 100.0f;
+        self.currentYDirection = 0;
+    }
     
     // now that the angle has changed, we need to reset the position and rotation of the sprite
     // get the new position by cos/sin -ing and then multiplying by the orbitalDistance, then adding the center point
@@ -57,6 +66,7 @@
     self.sprite.position = CGPointMake(newPositionX, newPositionY);
     
     // set the sprite's rotation by converting the angleRelativeToOrb to degrees
+    // it's negative because we're saying that rotation increases counter-clockwise, while self.sprite.rotation increases clockwise
     self.sprite.rotation = -self.angleRelativeToOrb * (180.0f / M_PI);
 }
 
