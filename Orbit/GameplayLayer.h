@@ -12,4 +12,7 @@
 @interface GameplayLayer : CCLayer
 // return this layer encapsulated in a CCScene (needed for transitions)
 + (CCScene *)scene;
+
+// get an array of possible orbits
++ (NSArray *)getPossibleOrbits;
 @end

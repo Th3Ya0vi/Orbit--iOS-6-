@@ -63,17 +63,25 @@
     // get the touch's location in node space
     CGPoint touchLocation = [self convertToNodeSpace:[touch locationInView:[touch view]]];
     
-    // check to see if we need to move up or down an orbit
-    if (touchLocation.x >= CENTER_POINT.x) {
+    BOOL canMoveUp = (self.player.orbitIndex != 2);
+    BOOL canMoveDown = (self.player.orbitIndex != 0);
+    
+    // check to see if we need + can to move up or down an orbit
+    if (touchLocation.x >= CENTER_POINT.x && canMoveUp) {
         // move up an orbit
-
-    } else {
+        self.player.state = TransitionUpState;
+    } else if (touchLocation.x <= CENTER_POINT.x && canMoveDown) {
         // move down an orbit
+        self.player.state = TransitionDownState;
     }
 }
+
++ (NSArray *)getPossibleOrbits {
+    return @[@(40), @(80), @(120)];
+}
+
+@end
 
 #pragma mark - Z Order
 // Z(0): Orb
 // Z(1): Player
-
-@end

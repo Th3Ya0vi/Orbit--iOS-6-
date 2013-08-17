@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Entity.h"
 
-@interface Player : NSObject
+@interface Player : Entity
 // returns the player's sprite
 - (CCSprite *)sprite;
 

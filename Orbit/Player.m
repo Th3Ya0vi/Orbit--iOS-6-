@@ -7,6 +7,8 @@
 //
 
 #import "Player.h"
+#import "Entity.h"
+#import "GameplayLayer.h"
 
 @interface Player ()
 // the player's sprite (contains the sprite image, position, rotation)
@@ -36,7 +38,8 @@
         self.angleRelativeToOrb = 0.0f;
         
         // how far away the player is from the orb
-        self.orbitalDistance = 50.0f;
+        self.orbitalDistance = [(NSNumber *)[[GameplayLayer getPossibleOrbits] objectAtIndex:self.orbitIndex] floatValue];
+        NSLog(@"%f", self.orbitalDistance);
         
         // how many degrees the player travels per second
         self.radiansPerSecond = 2.0f;
@@ -48,6 +51,50 @@
 - (void)update:(ccTime)delta {
     // increase the angle by radiansPerSecond * delta
     self.angleRelativeToOrb += self.radiansPerSecond * delta;
+    
+    // check to see if orbitalDistance needs to change
+    if (self.state != OrbitState) {
+        // change orbitalDistance accordingly
+        if (self.state == TransitionUpState) {
+            // increment orbitalDistance
+            self.orbitalDistance += 250.0f * delta;
+        } else {
+            // decrement orbitalDistance
+            self.orbitalDistance -= 250.0f * delta;
+        }
+        
+        // check if orbit has been transitioned too, then set state to OrbitState
+        // get target orbit
+        int targetOrbitRadius = 0;
+        NSArray *possibleOrbits = [GameplayLayer getPossibleOrbits];
+        if (self.state == TransitionUpState) {
+            targetOrbitRadius = [(NSNumber *)[possibleOrbits objectAtIndex:(self.orbitIndex + 1)] intValue];
+        } else {
+            targetOrbitRadius = [(NSNumber *)[possibleOrbits objectAtIndex:(self.orbitIndex - 1)] intValue];
+        }
+        
+        // whether the entity has completed its transition by either getting to or overshooting the target radius
+        BOOL transitionComplete = NO;
+        
+        // now we know what the entity is targeting, and we know if they're moving up or down, we can check if they have met their target
+        if (self.state == TransitionUpState) {
+            if (self.orbitalDistance >= targetOrbitRadius) {
+                transitionComplete = YES;
+                self.orbitIndex++;
+            }
+        } else {
+            if (self.orbitalDistance <= targetOrbitRadius) {
+                transitionComplete = YES;
+                self.orbitIndex--;
+            }
+        }
+        
+        // if metTarget, adjust the orbitalDistance and set our state to orbiting
+        if (transitionComplete) {
+            self.orbitalDistance = targetOrbitRadius;
+            self.state = OrbitState;
+        }
+    }
     
     // now that the angle has changed, we need to reset the position and rotation of the sprite
     // get the new position by cos/sin -ing and then multiplying by the orbitalDistance, then adding the center point
