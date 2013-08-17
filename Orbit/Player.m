@@ -18,10 +18,13 @@
 @property (nonatomic) float angleRelativeToOrb;
 
 // the radius of the player's orbit
-@property (nonatomic) float orbitalDistance;
+@property (nonatomic) float orbitalRadius;
 
-// the radians per second that the player travels
-@property (nonatomic) float radiansPerSecond;
+// the pixels per second that the player travels
+@property (nonatomic) float pixelsPerSecond;
+
+// a number that describes how quickly the player transitions from orbits (pixels per second)
+@property (nonatomic) float orbitTransitionRate;
 @end
 
 @implementation Player
@@ -38,29 +41,44 @@
         self.angleRelativeToOrb = 0.0f;
         
         // how far away the player is from the orb
-        self.orbitalDistance = [(NSNumber *)[[GameplayLayer getPossibleOrbits] objectAtIndex:self.orbitIndex] floatValue];
-        NSLog(@"%f", self.orbitalDistance);
+        self.orbitalRadius = [(NSNumber *)[[GameplayLayer getPossibleOrbits] objectAtIndex:self.orbitIndex] floatValue];
         
-        // how many degrees the player travels per second
-        self.radiansPerSecond = 2.0f;
+        // how many pixels the player travels per second
+        self.pixelsPerSecond = 300.0f;
+        
+        // how quickly the player transitions from orbits
+        self.orbitTransitionRate = 300.0f;
     }
     return self;
 }
 
 // updates the player's position and rotation
 - (void)update:(ccTime)delta {
-    // increase the angle by radiansPerSecond * delta
-    self.angleRelativeToOrb += self.radiansPerSecond * delta;
+    [self increaseAngleRelativeToOrbWithDelta:delta];
+    [self adjustOrbitalDistanceWithDelta:delta];
+    [self setPositionWithDelta:delta];
+    [self setRotationWithDelta:delta];
+}
+
+- (void)increaseAngleRelativeToOrbWithDelta:(ccTime)delta {
+    // s(arc length) = r(radius) * ∂(angle: radians)
+    // ∂ = s ÷ r
+    // angleRelaviteToOrb = pixelsPerSecond ÷ orbitalRadius
     
+    // increase the angle by pixelsPerSecond ÷ orbitalRadius * delta
+    self.angleRelativeToOrb += self.pixelsPerSecond / self.orbitalRadius * delta;
+}
+
+- (void)adjustOrbitalDistanceWithDelta:(ccTime)delta {
     // check to see if orbitalDistance needs to change
     if (self.state != OrbitState) {
         // change orbitalDistance accordingly
         if (self.state == TransitionUpState) {
             // increment orbitalDistance
-            self.orbitalDistance += 250.0f * delta;
+            self.orbitalRadius += self.orbitTransitionRate * delta;
         } else {
             // decrement orbitalDistance
-            self.orbitalDistance -= 250.0f * delta;
+            self.orbitalRadius -= self.orbitTransitionRate * delta;
         }
         
         // check if orbit has been transitioned too, then set state to OrbitState
@@ -78,12 +96,12 @@
         
         // now we know what the entity is targeting, and we know if they're moving up or down, we can check if they have met their target
         if (self.state == TransitionUpState) {
-            if (self.orbitalDistance >= targetOrbitRadius) {
+            if (self.orbitalRadius >= targetOrbitRadius) {
                 transitionComplete = YES;
                 self.orbitIndex++;
             }
         } else {
-            if (self.orbitalDistance <= targetOrbitRadius) {
+            if (self.orbitalRadius <= targetOrbitRadius) {
                 transitionComplete = YES;
                 self.orbitIndex--;
             }
@@ -91,18 +109,22 @@
         
         // if metTarget, adjust the orbitalDistance and set our state to orbiting
         if (transitionComplete) {
-            self.orbitalDistance = targetOrbitRadius;
+            self.orbitalRadius = targetOrbitRadius;
             self.state = OrbitState;
         }
     }
-    
+}
+
+- (void)setPositionWithDelta:(ccTime)delta {
     // now that the angle has changed, we need to reset the position and rotation of the sprite
     // get the new position by cos/sin -ing and then multiplying by the orbitalDistance, then adding the center point
-    float newPositionX = cosf(self.angleRelativeToOrb) * self.orbitalDistance + CENTER_POINT.x;
-    float newPositionY = sinf(self.angleRelativeToOrb) * self.orbitalDistance + CENTER_POINT.y;
+    float newPositionX = cosf(self.angleRelativeToOrb) * self.orbitalRadius + CENTER_POINT.x;
+    float newPositionY = sinf(self.angleRelativeToOrb) * self.orbitalRadius + CENTER_POINT.y;
     // set the sprites position
     self.sprite.position = CGPointMake(newPositionX, newPositionY);
-    
+}
+
+- (void)setRotationWithDelta:(ccTime)delta {
     // set the sprite's rotation by converting the angleRelativeToOrb to degrees
     // it's negative because we're saying that rotation increases counter-clockwise, while self.sprite.rotation increases clockwise
     self.sprite.rotation = -self.angleRelativeToOrb * (180.0f / M_PI);
