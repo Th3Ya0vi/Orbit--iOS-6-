@@ -7,8 +7,6 @@
 //
 
 #import "Player.h"
-#import "GameplayLayer.h"
-#import "OrbitTransitionHandler.h"
 
 @interface Player ()
 // the player's sprite (contains the sprite image, position, rotation)
@@ -16,6 +14,9 @@
 
 // the player's angle relative to the orb, think of the player on a cartesian grid, right would be 0π radians increasing counter-clockwise
 @property (nonatomic) float angleRelativeToOrb;
+
+// the radius of the player's orbit
+@property (nonatomic) float orbitalDistance;
 
 // the radians per second that the player travels
 @property (nonatomic) float radiansPerSecond;
@@ -48,6 +49,15 @@
     // increase the angle by radiansPerSecond * delta
     self.angleRelativeToOrb += self.radiansPerSecond * delta;
     
+    // set the orbitalDistance accordingly
+    if (self.currentYDirection == 1 && self.orbitalDistance < 100.0f) {
+        self.orbitalDistance += 250.0f * delta;
+    }
+    if (self.currentYDirection == 1 && self.orbitalDistance >= 100.0f) {
+        self.orbitalDistance = 100.0f;
+        self.currentYDirection = 0;
+    }
+    
     // now that the angle has changed, we need to reset the position and rotation of the sprite
     // get the new position by cos/sin -ing and then multiplying by the orbitalDistance, then adding the center point
     float newPositionX = cosf(self.angleRelativeToOrb) * self.orbitalDistance + CENTER_POINT.x;
@@ -58,10 +68,6 @@
     // set the sprite's rotation by converting the angleRelativeToOrb to degrees
     // it's negative because we're saying that rotation increases counter-clockwise, while self.sprite.rotation increases clockwise
     self.sprite.rotation = -self.angleRelativeToOrb * (180.0f / M_PI);
-}
-
-- (void)moveUpOrbit {
-    [[OrbitTransitionHandler sharedOrbitTransitionHandler] animateOrbitTransitionUpForPlayer:self];
 }
 
 @end
