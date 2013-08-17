@@ -14,4 +14,9 @@
 
 // updates the player's position and rotation
 - (void)update:(ccTime)delta;
+
+- (void)moveUpOrbit;
+
+// the radius of the player's orbit
+@property (nonatomic) float orbitalDistance;
 @end

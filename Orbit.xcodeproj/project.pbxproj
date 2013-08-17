@@ -11,9 +11,11 @@
 		AC158D9B17BDCC5A0059685A /* Orb.m in Sources */ = {isa = PBXBuildFile; fileRef = AC158D9A17BDCC5A0059685A /* Orb.m */; };
 		AC158D9E17BDCCD50059685A /* Orb.png in Resources */ = {isa = PBXBuildFile; fileRef = AC158D9C17BDCCD50059685A /* Orb.png */; };
 		AC158D9F17BDCCD50059685A /* Orb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC158D9D17BDCCD50059685A /* Orb@2x.png */; };
-		AC158DA217BDCE400059685A /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = AC158DA017BDCE400059685A /* Player.png */; };
-		AC158DA317BDCE400059685A /* Player@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC158DA117BDCE400059685A /* Player@2x.png */; };
 		AC4D926017BDC200000EAE21 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4D925F17BDC200000EAE21 /* Player.m */; };
+		ACCBEDEE17BE5C4900C91CD4 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = ACCBEDEC17BE5C4900C91CD4 /* Player.png */; };
+		ACCBEDEF17BE5C4900C91CD4 /* Player@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACCBEDED17BE5C4900C91CD4 /* Player@2x.png */; };
+		ACCBEDF217BE6BBF00C91CD4 /* OrbitTransitionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCBEDF117BE6BBF00C91CD4 /* OrbitTransitionHandler.m */; };
+		ACCBEDF517BE6F4900C91CD4 /* OrbitTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCBEDF417BE6F4900C91CD4 /* OrbitTransition.m */; };
 		D783A1DC17BAB053007F3295 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783A1DB17BAB053007F3295 /* QuartzCore.framework */; };
 		D783A1DE17BAB053007F3295 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783A1DD17BAB053007F3295 /* OpenGLES.framework */; };
 		D783A1E017BAB053007F3295 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783A1DF17BAB053007F3295 /* OpenAL.framework */; };
@@ -158,10 +160,14 @@
 		AC158D9A17BDCC5A0059685A /* Orb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Orb.m; sourceTree = "<group>"; };
 		AC158D9C17BDCCD50059685A /* Orb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orb.png; sourceTree = "<group>"; };
 		AC158D9D17BDCCD50059685A /* Orb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orb@2x.png"; sourceTree = "<group>"; };
-		AC158DA017BDCE400059685A /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
-		AC158DA117BDCE400059685A /* Player@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player@2x.png"; sourceTree = "<group>"; };
 		AC4D925E17BDC200000EAE21 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		AC4D925F17BDC200000EAE21 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		ACCBEDEC17BE5C4900C91CD4 /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
+		ACCBEDED17BE5C4900C91CD4 /* Player@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player@2x.png"; sourceTree = "<group>"; };
+		ACCBEDF017BE6BBF00C91CD4 /* OrbitTransitionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrbitTransitionHandler.h; sourceTree = "<group>"; };
+		ACCBEDF117BE6BBF00C91CD4 /* OrbitTransitionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrbitTransitionHandler.m; sourceTree = "<group>"; };
+		ACCBEDF317BE6F4800C91CD4 /* OrbitTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrbitTransition.h; sourceTree = "<group>"; };
+		ACCBEDF417BE6F4900C91CD4 /* OrbitTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrbitTransition.m; sourceTree = "<group>"; };
 		D783A1D817BAB053007F3295 /* Orbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D783A1DB17BAB053007F3295 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D783A1DD17BAB053007F3295 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -471,8 +477,8 @@
 		AC158D8D17BDC8310059685A /* Game Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AC158DA017BDCE400059685A /* Player.png */,
-				AC158DA117BDCE400059685A /* Player@2x.png */,
+				ACCBEDEC17BE5C4900C91CD4 /* Player.png */,
+				ACCBEDED17BE5C4900C91CD4 /* Player@2x.png */,
 				AC158D9C17BDCCD50059685A /* Orb.png */,
 				AC158D9D17BDCCD50059685A /* Orb@2x.png */,
 			);
@@ -530,6 +536,10 @@
 				AC4D925F17BDC200000EAE21 /* Player.m */,
 				AC158D9917BDCC5A0059685A /* Orb.h */,
 				AC158D9A17BDCC5A0059685A /* Orb.m */,
+				ACCBEDF017BE6BBF00C91CD4 /* OrbitTransitionHandler.h */,
+				ACCBEDF117BE6BBF00C91CD4 /* OrbitTransitionHandler.m */,
+				ACCBEDF317BE6F4800C91CD4 /* OrbitTransition.h */,
+				ACCBEDF417BE6F4900C91CD4 /* OrbitTransition.m */,
 				AC158D8D17BDC8310059685A /* Game Resources */,
 				D783A1F017BAB053007F3295 /* Resources */,
 				D783A20817BAB053007F3295 /* libs */,
@@ -985,8 +995,8 @@
 				D7A6CDB317BACB6900F093D7 /* Icon@2x.png in Resources */,
 				AC158D9E17BDCCD50059685A /* Orb.png in Resources */,
 				AC158D9F17BDCCD50059685A /* Orb@2x.png in Resources */,
-				AC158DA217BDCE400059685A /* Player.png in Resources */,
-				AC158DA317BDCE400059685A /* Player@2x.png in Resources */,
+				ACCBEDEE17BE5C4900C91CD4 /* Player.png in Resources */,
+				ACCBEDEF17BE5C4900C91CD4 /* Player@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1129,6 +1139,8 @@
 				AC4D926017BDC200000EAE21 /* Player.m in Sources */,
 				AC158D9017BDC89A0059685A /* GameplayLayer.m in Sources */,
 				AC158D9B17BDCC5A0059685A /* Orb.m in Sources */,
+				ACCBEDF217BE6BBF00C91CD4 /* OrbitTransitionHandler.m in Sources */,
+				ACCBEDF517BE6F4900C91CD4 /* OrbitTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
