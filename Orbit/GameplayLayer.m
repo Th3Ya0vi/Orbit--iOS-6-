@@ -66,7 +66,7 @@
     // check to see if we need to move up or down an orbit
     if (touchLocation.x >= CENTER_POINT.x) {
         // move up an orbit
-        self.player.currentYDirection = 1;
+
     } else {
         // move down an orbit
     }

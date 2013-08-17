@@ -49,15 +49,6 @@
     // increase the angle by radiansPerSecond * delta
     self.angleRelativeToOrb += self.radiansPerSecond * delta;
     
-    // set the orbitalDistance accordingly
-    if (self.currentYDirection == 1 && self.orbitalDistance < 100.0f) {
-        self.orbitalDistance += 250.0f * delta;
-    }
-    if (self.currentYDirection == 1 && self.orbitalDistance >= 100.0f) {
-        self.orbitalDistance = 100.0f;
-        self.currentYDirection = 0;
-    }
-    
     // now that the angle has changed, we need to reset the position and rotation of the sprite
     // get the new position by cos/sin -ing and then multiplying by the orbitalDistance, then adding the center point
     float newPositionX = cosf(self.angleRelativeToOrb) * self.orbitalDistance + CENTER_POINT.x;
