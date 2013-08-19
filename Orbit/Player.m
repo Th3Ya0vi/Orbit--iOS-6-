@@ -40,6 +40,9 @@
         // the initial angle
         self.angleRelativeToOrb = 0.0f;
         
+        // set our orbit index to 1 (note: this needs to be set before orbitalRadius)
+        self.orbitIndex = 1;
+        
         // how far away the player is from the orb
         self.orbitalRadius = [(NSNumber *)[[GameplayLayer getPossibleOrbits] objectAtIndex:self.orbitIndex] floatValue];
         

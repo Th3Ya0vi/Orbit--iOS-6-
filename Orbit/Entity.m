@@ -17,8 +17,8 @@
         // set our initial state to OrbitState
         self.state = OrbitState;
         
-        // set our orbit index to 0
-        self.orbitIndex = 0;
+        // we don't set our orbitIndex here because the Player and the Enemy will have different
+        // orbitIndexs initially, so they will have to set it themselves
     }
     return self;
 }

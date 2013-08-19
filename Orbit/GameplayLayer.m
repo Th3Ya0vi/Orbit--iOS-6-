@@ -16,6 +16,11 @@
 @property (nonatomic) Player *player;
 // the orb
 @property (nonatomic) Orb *orb;
+
+// the time
+@property (nonatomic) float time;
+// the time label
+@property (nonatomic) CCLabelTTF *timeLabel;
 @end
 
 @implementation GameplayLayer
@@ -44,14 +49,30 @@
         // set touch enabled so we can switch orbits
         [self setTouchEnabled:YES];
         
+        // set the time and initialize the time counter
+        self.time = 0.0f;
+        self.timeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Time: %f", self.time]
+                                             fontName:@"Helvetica Neue"
+                                             fontSize:24];
+        self.timeLabel.position = CGPointMake(self.timeLabel.boundingBox.size.width / 2.0f, WINDOW_SIZE.height - self.timeLabel.boundingBox.size.height / 2.0f);
+        [self addChild:self.timeLabel z:2];
+        
         // calls update: every frame
         [self scheduleUpdate];
     }
     return self;
 }
 
+- (void)setTime:(float)time {
+    _time = time;
+    int timeInt = (int)time;
+    [self.timeLabel setString:[NSString stringWithFormat:@"Time: %d", timeInt]];
+    self.timeLabel.position = CGPointMake(self.timeLabel.boundingBox.size.width / 2.0f, WINDOW_SIZE.height - self.timeLabel.boundingBox.size.height / 2.0f);
+}
+
 - (void)update:(ccTime)delta {
     [self.player update:delta];
+    self.time += delta;
 }
 
 // the player touched the screen
@@ -85,3 +106,4 @@
 #pragma mark - Z Order
 // Z(0): Orb
 // Z(1): Player
+// Z(2): Time label
