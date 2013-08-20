@@ -61,6 +61,7 @@
 -(void) onEnter
 {
 	[super onEnter];
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameplayLayer scene]]];
+//	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GameplayLayer scene]]];
+    [[CCDirector sharedDirector] replaceScene:[GameplayLayer scene]];
 }
 @end
