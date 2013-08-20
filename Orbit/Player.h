@@ -10,9 +10,5 @@
 #import "Entity.h"
 
 @interface Player : Entity
-// returns the player's sprite
-- (CCSprite *)sprite;
 
-// updates the player's position and rotation
-- (void)update:(ccTime)delta;
 @end

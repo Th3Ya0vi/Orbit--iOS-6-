@@ -10,6 +10,7 @@
 #import "GameplayLayer.h"
 #import "Player.h"
 #import "Orb.h"
+#import "Enemy.h"
 
 @interface GameplayLayer ()
 // the player
@@ -21,6 +22,9 @@
 @property (nonatomic) float time;
 // the time label
 @property (nonatomic) CCLabelTTF *timeLabel;
+
+// an array of all the enemies currently in the game
+@property (nonatomic) NSMutableArray *enemies;
 @end
 
 @implementation GameplayLayer
@@ -43,8 +47,8 @@
         self.orb = [[Orb alloc] init];
         
         // add the player and the orb to this layer
-        [self addChild:[self.orb sprite] z:0]; // the orb has a z of 0
-        [self addChild:[self.player sprite] z:1]; // the player has a z of 1
+        [self addChild:[self.orb sprite] z:50]; // the orb has a z of 50
+        [self addChild:[self.player sprite] z:49]; // the player has a z of 49
         
         // set touch enabled so we can switch orbits
         [self setTouchEnabled:YES];
@@ -55,7 +59,10 @@
                                              fontName:@"Helvetica Neue"
                                              fontSize:24];
         self.timeLabel.position = CGPointMake(self.timeLabel.boundingBox.size.width / 2.0f, WINDOW_SIZE.height - self.timeLabel.boundingBox.size.height / 2.0f);
-        [self addChild:self.timeLabel z:2];
+        [self addChild:self.timeLabel z:47];
+        
+        // initialize the enemy array
+        self.enemies = [[NSMutableArray alloc] init];
         
         // calls update: every frame
         [self scheduleUpdate];
@@ -73,6 +80,16 @@
 - (void)update:(ccTime)delta {
     [self.player update:delta];
     self.time += delta;
+    static float enemyTimer = 0.0f;
+    enemyTimer += delta;
+    if (enemyTimer > 5.0f) {
+        [self.enemies addObject:[[Enemy alloc] initWithTargetOrbitIndex:(arc4random() % 3)
+                                                                  layer:self]];
+        enemyTimer = 0.0f;
+    }
+    for (Enemy *enemy in self.enemies) {
+        [enemy update:delta];
+    }
 }
 
 // the player touched the screen
@@ -104,6 +121,7 @@
 @end
 
 #pragma mark - Z Order
-// Z(0): Orb
-// Z(1): Player
-// Z(2): Time label
+// Z(50): Orb
+// Z(49): Player
+// Z(48): Enemies
+// Z(47): Time label
