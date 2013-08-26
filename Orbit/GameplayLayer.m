@@ -70,15 +70,19 @@
     return self;
 }
 
+// whenever we set the time, we need to update the time label
 - (void)setTime:(float)time {
     _time = time;
-    int timeInt = (int)time;
-    [self.timeLabel setString:[NSString stringWithFormat:@"Time: %d", timeInt]];
+    [self.timeLabel setString:[NSString stringWithFormat:@"Time: %d", (int)self.time]];
     self.timeLabel.position = CGPointMake(self.timeLabel.boundingBox.size.width / 2.0f, WINDOW_SIZE.height - self.timeLabel.boundingBox.size.height / 2.0f);
 }
 
+// gets called every frame
 - (void)update:(ccTime)delta {
+    // update our player
     [self.player update:delta];
+    
+    // for debugging purposes (spawn an enemy every 5 seconds)
     self.time += delta;
     static float enemyTimer = 0.0f;
     enemyTimer += delta;
@@ -87,8 +91,21 @@
                                                                   layer:self]];
         enemyTimer = 0.0f;
     }
+    
+    // update all the enemies
     for (Enemy *enemy in self.enemies) {
         [enemy update:delta];
+    }
+    // if an enemy goes off screen, delete it
+    for (int i = 0; i < [self.enemies count]; i++) {
+        Enemy *enemy = (Enemy *)[self.enemies objectAtIndex:i];
+        CGPoint position = enemy.sprite.position;
+        // if the enemy's position is off screen (note: this is slightly off since the enemy's position is its center)
+        if (position.x < 0 || position.x > WINDOW_SIZE.width || position.y < 0 || position.y > WINDOW_SIZE.height) {
+            // remove the enemy's sprite
+            [enemy.sprite removeFromParentAndCleanup:YES];
+            [self.enemies removeObject:enemy];
+        }
     }
 }
 

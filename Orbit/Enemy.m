@@ -10,6 +10,8 @@
 
 @interface Enemy ()
 @property (nonatomic) int targetOrbitIndex;
+@property (nonatomic) float life;
+@property (nonatomic, getter = isDespawning) BOOL despawning;
 @end
 
 @implementation Enemy
@@ -34,8 +36,24 @@
     return self;
 }
 
+#define MAX_LIFE 5.0f
+#define DESPAWN_TRANSITION_RATE_MODIFIER 1.5f
+
 - (void)update:(ccTime)delta {
     [super update:delta];
+    
+    // increase our life by delta
+    self.life += delta;
+    
+    // if our life is over, then set despawning to YES
+    if (self.life > MAX_LIFE) {
+        self.despawning = YES;
+    }
+    
+    // if we are in the process of despawning
+    if (self.isDespawning) {
+        self.orbitalRadius += self.orbitTransitionRate * 1.5f * delta;
+    }
     
     // if we are orbiting and have not yet reached our target orbit index, set our state to transition up
     if (self.state == OrbitState && self.orbitIndex != self.targetOrbitIndex) {
