@@ -4,3 +4,5 @@ Orbit.xcodeproj/project.xcworkspace/xcuserdata/dev.xcuserdatad/UserInterfaceStat
 Orbit.xcodeproj/project.xcworkspace/xcuserdata/hamdan.xcuserdatad/UserInterfaceState.xcuserstate
 
 *.xcuserstate
+
+.DS_Store

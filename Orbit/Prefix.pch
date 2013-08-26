@@ -1,0 +1,20 @@
+//
+// Prefix header for all source files of the 'Test' target in the 'Test' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iPhone SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#endif
+
+// get the window size
+#define WINDOW_SIZE [[CCDirector sharedDirector] winSize]
+// get the center point
+#define CENTER_POINT CGPointMake(WINDOW_SIZE.width / 2.0f, WINDOW_SIZE.height / 2.0f)
