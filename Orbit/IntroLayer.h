@@ -2,13 +2,9 @@
 //  IntroLayer.h
 //  Orbit
 //
-//  Created by Hamdan Developer on 8/13/13.
+//  Created by Hamdan Javeed on 8/13/13.
 //  Copyright Hamdan Javeed 2013. All rights reserved.
 //
-
-
-// When you import this file, you import all the cocos2d classes
-#import "cocos2d.h"
 
 // HelloWorldLayer
 @interface IntroLayer : CCLayer

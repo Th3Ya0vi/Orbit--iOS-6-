@@ -2,12 +2,11 @@
 //  AppDelegate.h
 //  Orbit
 //
-//  Created by Hamdan Developer on 8/13/13.
+//  Created by Hamdan Javeed on 8/13/13.
 //  Copyright Hamdan Javeed 2013. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "cocos2d.h"
 
 // Added only for iOS 6 support
 @interface MyNavigationController : UINavigationController <CCDirectorDelegate>
@@ -18,11 +17,11 @@
 	UIWindow *window_;
 	MyNavigationController *navController_;
 
-	CCDirectorIOS	*director_;							// weak ref
+	CCDirectorIOS	*__unsafe_unretained director_;							// weak ref
 }
 
-@property (nonatomic, retain) UIWindow *window;
+@property (nonatomic, strong) UIWindow *window;
 @property (readonly) MyNavigationController *navController;
-@property (readonly) CCDirectorIOS *director;
+@property (readonly, unsafe_unretained) CCDirectorIOS *director;
 
 @end
